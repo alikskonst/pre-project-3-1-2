@@ -1,0 +1,86 @@
+package edu.kata.task312.entity;
+
+import edu.kata.task312.entity.parent.NameEntity;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Set;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "user")
+public class User extends NameEntity implements UserDetails {
+
+    //    @Basic
+    @Column(name = "password_hash")
+    private String password;
+
+    //    @Basic
+    @Column(name = "non_expired")
+    private boolean accountNonExpired;
+
+    //    @Basic
+    @Column(name = "non_locked")
+    private boolean accountNonLocked;
+
+    //    @Basic
+    @Column(name = "credentials_non_expired")
+    private boolean credentialsNonExpired;
+
+    //    @Basic
+//    @Column(name = "enabled")
+    private boolean enabled;
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"),
+            foreignKey = @ForeignKey(name = "fk_user_to_role")
+    )
+    private Set<Role> roleList;
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roleList;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return getName();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+}

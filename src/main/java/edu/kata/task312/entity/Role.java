@@ -1,0 +1,50 @@
+package edu.kata.task312.entity;
+
+import edu.kata.task312.entity.parent.NameEntity;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "role")
+public class Role extends NameEntity implements GrantedAuthority {
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"),
+            foreignKey = @ForeignKey(name = "fk_role_to_user")
+    )
+    private List<User> userList;
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    @Override
+    public String getAuthority() {
+        return getName();
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Role role = (Role) obj;
+        return this.getId().equals(role.getId()) && this.getName().equalsIgnoreCase(role.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 11;
+        hash = 31 * hash + getId().intValue();
+        hash = 31 * hash + (getName() == null ? 0 : getName().hashCode());
+        return hash;
+    }
+}
