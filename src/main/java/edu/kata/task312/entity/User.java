@@ -45,13 +45,13 @@ public class User extends NameEntity implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"),
             foreignKey = @ForeignKey(name = "fk_user_to_role")
     )
-    private Set<Role> roleList;
+    private Set<Role> roleSet;
 
     //------------------------------------------------------------------------------------------------------------------
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roleList;
+        return roleSet;
     }
 
     @Override
