@@ -27,6 +27,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findOneByLogin(String login) {
+        return userRepository.findOneByLogin(login).orElseThrow(
+                () -> new EntityNotFoundException("User not found by login: " + login)
+        );
+    }
+
+    @Override
     public List<User> findAll() {
         return userRepository.findAll();
     }

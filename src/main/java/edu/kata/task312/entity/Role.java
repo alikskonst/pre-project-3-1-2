@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "role")
+@Table(name = "role", uniqueConstraints = {@UniqueConstraint(columnNames = "name")})
 public class Role extends NameEntity implements GrantedAuthority {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
@@ -32,12 +32,15 @@ public class Role extends NameEntity implements GrantedAuthority {
 
     //------------------------------------------------------------------------------------------------------------------
 
+    // на случай сбора в Set
+    // see: edu.kata.task312.User
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Role role = (Role) obj;
-        return this.getId().equals(role.getId()) && this.getName().equalsIgnoreCase(role.getName());
+        return getId().equals(role.getId()) && getName().equals(role.getName());
     }
 
     @Override

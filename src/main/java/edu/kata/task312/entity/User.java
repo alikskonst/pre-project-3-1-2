@@ -10,30 +10,33 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 
-@Getter
 @Setter
 @Entity
-@Table(name = "user")
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "login")})
 public class User extends NameEntity implements UserDetails {
 
-    //    @Basic
+    @Getter
+    //@Column(name = "login")
+    private String login;
+
+    //@Basic
     @Column(name = "password_hash")
     private String password;
 
-    //    @Basic
+    //@Basic
     @Column(name = "non_expired")
     private boolean accountNonExpired;
 
-    //    @Basic
+    //@Basic
     @Column(name = "non_locked")
     private boolean accountNonLocked;
 
-    //    @Basic
+    //@Basic
     @Column(name = "credentials_non_expired")
     private boolean credentialsNonExpired;
 
-    //    @Basic
-//    @Column(name = "enabled")
+    //@Basic
+    //@Column(name = "enabled")
     private boolean enabled;
 
     //------------------------------------------------------------------------------------------------------------------
