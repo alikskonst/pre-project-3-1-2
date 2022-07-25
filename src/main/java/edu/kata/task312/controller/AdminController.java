@@ -32,5 +32,5 @@ public interface AdminController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/remove/{id}")
-    String remove(@PathVariable Long id);
+    String remove(@PathVariable("id") Long id);
 }

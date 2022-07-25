@@ -21,7 +21,7 @@ public class UserControllerImpl implements UserController {
     @Override
     public String userPage(Principal principal, ModelMap modelMap) {
         //User user = userService.findOneByLogin(principal.getName());
-        modelMap.addAttribute("user", userService.findOneByLogin(principal.getName()));
+        modelMap.addAttribute("user", userService.findOne(principal.getName()));
         return "user";
     }
 }

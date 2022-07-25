@@ -4,5 +4,5 @@ import edu.kata.task312.entity.User;
 
 public interface UserService extends CommonService<User> {
 
-    User findOneByLogin(String login);
+    User findOne(String login);
 }

@@ -16,6 +16,14 @@ import java.util.Set;
 public class User extends NameEntity implements UserDetails {
 
     @Getter
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Getter
+    @Column(name = "middle_name")
+    private String middleName;
+
+    @Getter
     //@Column(name = "login")
     private String login;
 
