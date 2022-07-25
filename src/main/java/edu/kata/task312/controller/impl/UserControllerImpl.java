@@ -1,6 +1,7 @@
 package edu.kata.task312.controller.impl;
 
 import edu.kata.task312.controller.UserController;
+import edu.kata.task312.entity.User;
 import edu.kata.task312.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ public class UserControllerImpl implements UserController {
     @Override
     public String userPage(Principal principal, ModelMap modelMap) {
         //User user = userService.findOneByLogin(principal.getName());
+        User user = userService.findOne(principal.getName());
         modelMap.addAttribute("user", userService.findOne(principal.getName()));
         return "user";
     }
