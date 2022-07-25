@@ -49,7 +49,7 @@ public class User extends NameEntity implements UserDetails {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
