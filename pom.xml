@@ -13,8 +13,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>ru.kata</groupId>
-    <artifactId>spring-boot_security-demo</artifactId>
+    <groupId>edu.kata</groupId>
+    <artifactId>task312</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>pre-project-task312</name>
