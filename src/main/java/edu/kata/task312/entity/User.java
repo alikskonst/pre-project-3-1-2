@@ -24,27 +24,20 @@ public class User extends NameEntity implements UserDetails {
     private String middleName;
 
     @Getter
-    //@Column(name = "login")
     private String login;
 
-    //@Basic
     @Column(name = "password_hash")
     private String password;
 
-    //@Basic
     @Column(name = "non_expired")
     private boolean accountNonExpired;
 
-    //@Basic
     @Column(name = "non_locked")
     private boolean accountNonLocked;
 
-    //@Basic
     @Column(name = "credentials_non_expired")
     private boolean credentialsNonExpired;
 
-    //@Basic
-    //@Column(name = "enabled")
     private boolean enabled;
 
     //------------------------------------------------------------------------------------------------------------------

@@ -36,20 +36,14 @@ public class AdminControllerImpl implements AdminController {
     }
 
     @Override
-    public String create(User user) {
+    public String save(User user) {
         userService.save(user);
-        return "redirect:/user_list";
-    }
-
-    @Override
-    public String update(User user) {
-        userService.save(user);
-        return "redirect:/user_list";
+        return "redirect:/admin";
     }
 
     @Override
     public String remove(Long id) {
         userService.remove(id);
-        return "redirect:/user_list";
+        return "redirect:/admin";
     }
 }
